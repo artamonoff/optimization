@@ -83,7 +83,7 @@ $\Hessian_f(\vectx)\leq0$ % (как симметричная матрица)
 
 Рассмотрим задачи оптимизации с ограничениями равенства
 
-\begin{align*}
+\begin{align}\label{MaxMinEqualityConstraintOptmization}
 	& \begin{gathered}
 		\max f(\vectx) \\
 		s.t.\left\{\begin{aligned}
@@ -96,59 +96,82 @@ $\Hessian_f(\vectx)\leq0$ % (как симметричная матрица)
 			g_1(\vectx)&=c_1 \\ &\vdots \\ g_k(\vectx)&=c_k
 		\end{aligned}\right.
 	\end{gathered}
-\end{align*}
+\end{align}
 Функция Лагранжа для этих задач
 \[
-	\Lagrange(\vectx,\vectlambda)=f(\vectx)-\sum_{j=1}^k \lambda_jg_j(\vectx)
+	\Lagrange(\vectx,\vectlambda)=f(\vectx)-\sum_{j=1}^k \lambda_j(g_j(\vectx)-c_j)
 \]
-\textbf{Необходимые условия} (локального) условного экстремума
+Обозначим
+\begin{align*}
+	\vectg(\vectx)&=\begin{pmatrix}
+		g_1(\vectx) \\ \vdots \\ g_k(\vectx)
+	\end{pmatrix} & \vectc&=\begin{pmatrix}
+		c_1 \\ \vdots \\ c_k
+	\end{pmatrix} &
+	\vectlambda &= \begin{pmatrix}
+		\lambda_1 \\ \vdots \\ \lambda_k
+	\end{pmatrix}
+\end{align*} 
+Тогда задачи \eqref{MaxMinEqualityConstraintOptmization} можно записать в виде
+\begin{align*}
+	&\max f(\vectx) & &\min f(\vectx) \\
+	s.t.\;&\vectg(\vectx)= \vectc  &
+	s.t.\;&\vectg(\vectx)= \vectc 
+\end{align*}
+Функция Лагранжа
+\[
+	\Lagrange(\vectx,\vectlambda)=f(\vectx)-
+	\vectlambda^\top(\vectg(\vectx)-\vectc)
+\]
+\textbf{Необходимые условия} (локального) условного экстремума 
+в задачах \eqref{MaxMinEqualityConstraintOptmization}
 \[
 	\left\{\begin{aligned}
 		\Lagrange'_{x_i}&=0 & i&=1,\ldots,n\\
-		g_j(\vectx) &= c_j & j&=1,\ldots,k
+		\Lagrange'_{\lambda_j}&=0  & j&=1,\ldots,k
 	\end{aligned}\right.
 \]
 Гессиан для функции Лагранжа (симметричная матрица)
-\[
+\begin{equation}\label{BorderedHessian}
 	\underset{(n+k)\times(n+k)}{\BordHessian_\Lagrange}=\begin{pmatrix}
 		\frac{\partial^2 \Lagrange}{\partial x_i\partial x_j} & | &\frac{\partial^2 \Lagrange}{\partial x_i\partial \lambda_l} \\
 		-- & + & -- \\
 		\frac{\partial^2 \Lagrange}{\partial \lambda_s\partial x_j} & | &
 		\frac{\partial^2 \Lagrange}{\partial \lambda_s\partial \lambda_l}
    \end{pmatrix}
-\]
+\end{equation}
 Из определения функции Лагранжа
 \begin{itemize}
 	\item \(\frac{\partial^2 \Lagrange}{\partial \lambda_s\partial \lambda_l}=0\)
 	\item \(\frac{\partial^2 \Lagrange}{\partial \lambda_s\partial x_j}=-\frac{\partial g_s}{\partial x_j}\)
 \end{itemize}
-Явный вид гессиана
-\begin{equation}\label{BorderedHessian}
-	\underset{(n+k)\times(n+k)}{\BordHessian_\Lagrange}=
-%    \begin{pmatrix}
-%      \frac{\partial^2 \Lagrange}{\partial x_i\partial x_j} & | &\frac{\partial^2 \Lagrange}{\partial x_i\partial \lambda_l} \\
-%      -- & + & -- \\
-%      \frac{\partial^2 \Lagrange}{\partial \lambda_s\partial x_j} & | &
-%      \frac{\partial^2 \Lagrange}{\partial \lambda_s\partial \lambda_l}
-%    \end{pmatrix}=\\
-	\begin{pmatrix} 
-		\frac{\partial^2 \Lagrange}{\partial x_1\partial x_1} &  \cdots &
-		\frac{\partial^2 \Lagrange}{\partial x_1\partial x_n} & -\frac{\partial g_1}{\partial x_1} & \cdots & 
-		-\frac{\partial g_k}{\partial x_1} \\ 
-		\frac{\partial^2 \Lagrange}{\partial x_2\partial x_1} &  \cdots &
-		\frac{\partial^2 \Lagrange}{\partial x_2\partial x_n} & -\frac{\partial g_1}{\partial x_2} & \cdots & 
-		-\frac{\partial g_k}{\partial x_2}\\
-		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-		\frac{\partial^2 \Lagrange}{\partial x_n\partial x_1} & \cdots &
-		\frac{\partial^2 \Lagrange}{\partial x_n\partial x_n}& -\frac{\partial g_1}{\partial x_n} & \cdots & 
-		-\frac{\partial g_k}{\partial x_n}\\
-		-\frac{\partial g_1}{\partial x_1} & \cdots &
-		-\frac{\partial g_1}{\partial x_n} & 0 & \cdots & 0\\
-		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
-		-\frac{\partial g_k}{\partial x_1} &  \cdots &
-		-\frac{\partial g_k}{\partial x_n} & 0 & \cdots & 0\\
-	\end{pmatrix}
-\end{equation}
+% Явный вид гессиана
+% \begin{equation}\label{BorderedHessian}
+% 	\underset{(n+k)\times(n+k)}{\BordHessian_\Lagrange}=
+% %    \begin{pmatrix}
+% %      \frac{\partial^2 \Lagrange}{\partial x_i\partial x_j} & | &\frac{\partial^2 \Lagrange}{\partial x_i\partial \lambda_l} \\
+% %      -- & + & -- \\
+% %      \frac{\partial^2 \Lagrange}{\partial \lambda_s\partial x_j} & | &
+% %      \frac{\partial^2 \Lagrange}{\partial \lambda_s\partial \lambda_l}
+% %    \end{pmatrix}=\\
+% 	\begin{pmatrix} 
+% 		\frac{\partial^2 \Lagrange}{\partial x_1\partial x_1} &  \cdots &
+% 		\frac{\partial^2 \Lagrange}{\partial x_1\partial x_n} & -\frac{\partial g_1}{\partial x_1} & \cdots & 
+% 		-\frac{\partial g_k}{\partial x_1} \\ 
+% 		\frac{\partial^2 \Lagrange}{\partial x_2\partial x_1} &  \cdots &
+% 		\frac{\partial^2 \Lagrange}{\partial x_2\partial x_n} & -\frac{\partial g_1}{\partial x_2} & \cdots & 
+% 		-\frac{\partial g_k}{\partial x_2}\\
+% 		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+% 		\frac{\partial^2 \Lagrange}{\partial x_n\partial x_1} & \cdots &
+% 		\frac{\partial^2 \Lagrange}{\partial x_n\partial x_n}& -\frac{\partial g_1}{\partial x_n} & \cdots & 
+% 		-\frac{\partial g_k}{\partial x_n}\\
+% 		-\frac{\partial g_1}{\partial x_1} & \cdots &
+% 		-\frac{\partial g_1}{\partial x_n} & 0 & \cdots & 0\\
+% 		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+% 		-\frac{\partial g_k}{\partial x_1} &  \cdots &
+% 		-\frac{\partial g_k}{\partial x_n} & 0 & \cdots & 0\\
+% 	\end{pmatrix}
+% \end{equation}
 Пусть $\Minor_{i}$ ($i=1,...,n+k$) -- главный минор матрицы $\BordHessian_\Lagrange$, 
 образованный строками и столбцами с индексами $i,i+1,...,n+k$.
 
