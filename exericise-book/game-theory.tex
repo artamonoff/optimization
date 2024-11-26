@@ -102,14 +102,15 @@
 
 \begin{exercise}
 Игра <<вооружение помехи>>. Сторона $A$ располагает тремя видами вооружений
-$A_1,A_2,A_3$, а сторона $B$ -- тремя видами помех $B_1,B_2,B_3$. Вероятность решения
+$\StrategyA_1,\StrategyA_2,\StrategyA_3$, а сторона $B$ -- тремя видами помех 
+$\StrategyB_1,\StrategyB_2,\StrategyB_3$. Вероятность решения
 боевой задачи стороной $A$ при различных видах вооружения и помех задана матрицей
 \begin{center}
 	\begin{tabular}{|c|c|c|c|}\hline
-	& $B_1$ & $B_2$ & $B_3$ \\ \hline
-	$A_1$ & 0.8 & 0.2 & 0.4 \\ \hline
-	$A_2$ & 0.4 & 0.5 & 0.6 \\ \hline
-	$A_3$ & 0.1 & 0.7 & 0.3 \\ \hline
+	& $\StrategyB_1$ & $\StrategyB_2$ & $\StrategyB_3$ \\ \hline
+	$\StrategyA_1$ & 0.8 & 0.2 & 0.4 \\ \hline
+	$\StrategyA_2$ & 0.4 & 0.5 & 0.6 \\ \hline
+	$\StrategyA_3$ & 0.1 & 0.7 & 0.3 \\ \hline
 	\end{tabular}
 \end{center}
 Сторона $A$ стремиться решить боевую задачу, сторона $B$ -- воспрепятствовать этому.
@@ -157,9 +158,9 @@ $A_1,A_2,A_3$, а сторона $B$ -- тремя видами помех $B_1,
 	\begin{tabular}{|c||c|c|}
 	\hline
 	% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-	& $s_{-1}$ & $s_{-2}$  \\ \hline \hline
-	$s_1$ & 1, 2 & 4, 3  \\ \hline
-	$s_2$ & 3, 4 & 2, 3  \\ %\hline
+	& $\StrategyB_{1}$ & $\StrategyB_{2}$  \\ \hline \hline
+	$\StrategyA_1$ & 1, 2 & 4, 3  \\ \hline
+	$\StrategyA_2$ & 3, 4 & 2, 3  \\ %\hline
 	\hline
 	\end{tabular}
 \end{center}
@@ -180,9 +181,9 @@ $A_1,A_2,A_3$, а сторона $B$ -- тремя видами помех $B_1,
 	\begin{tabular}{|c||c|c|}
 	\hline
 	% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-	& $s_{-1}$ & $s_{-2}$  \\ \hline \hline
-	$s_1$ & 4, 2 & 2, 0  \\ \hline
-	$s_2$ & 2, 2 & 3, 5  \\ %\hline
+	& $\StrategyB_{1}$ & $\StrategyB_{2}$  \\ \hline \hline
+	$\StrategyA_1$ & 4, 2 & 2, 0  \\ \hline
+	$\StrategyA_2$ & 2, 2 & 3, 5  \\ %\hline
 	\hline
 	\end{tabular}
 \end{center}
@@ -203,9 +204,9 @@ $A_1,A_2,A_3$, а сторона $B$ -- тремя видами помех $B_1,
 	\begin{tabular}{|c||c|c|c|}
 	\hline
 	% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-	& $s_{-1}$ & $s_{-2}$  & $s_{-3}$ \\ \hline \hline
-	$s_1$ & 4, 1 & 2, 2 & 1, 3  \\ \hline
-	$s_2$ & 2, 2 & 3, 5 & 0, 4 \\ %\hline
+	& $\StrategyB_{1}$ & $\StrategyB_{2}$  & $\StrategyB_{3}$ \\ \hline \hline
+	$\StrategyA_1$ & 4, 1 & 2, 2 & 1, 3  \\ \hline
+	$\StrategyA_2$ & 2, 2 & 3, 5 & 0, 4 \\ %\hline
 	\hline
 	\end{tabular}
 \end{center}
@@ -226,10 +227,10 @@ $A_1,A_2,A_3$, а сторона $B$ -- тремя видами помех $B_1,
 	\begin{tabular}{|c||c|c|}
 	\hline
 	% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-	& $s_{-1}$ & $s_{-2}$  \\ \hline \hline
-	$s_1$ & 4, 2 & 2, 0  \\ \hline
-	$s_2$ & 2, 2 & 3, 5  \\ \hline
-	$s_3$ & 3, 1 & 2, 3 \\ 
+	& $\StrategyB_{1}$ & $\StrategyB_{2}$  \\ \hline \hline
+	$\StrategyA_1$ & 4, 2 & 2, 0  \\ \hline
+	$\StrategyA_2$ & 2, 2 & 3, 5  \\ \hline
+	$\StrategyA_3$ & 3, 1 & 2, 3 \\ 
 	\hline
 	\end{tabular}
 \end{center}
@@ -310,11 +311,11 @@ $Q^l=(a-c)/4$ и <<крупносерийное производство>> $Q^h=
 	\begin{tabular}{|c||c|c|c|c|}
 	 \hline
 	% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-	& $s_{-1}$ & $s_{-2}$ & $s_{-3}$ & $s_{-4}$\\ \hline \hline
-	$s_1$ & 2, 2 & 1, 1 & 1, 3 & 2, 1\\ \hline
-	$s_2$ & 2, 4 & 1, 3 & 1, 2 & 4, 2\\ \hline
-	$s_3$ & 3, 2 & 2, 3 & 2, 5 & 3, 1 \\ \hline
-	$s_4$ & 4, 1 & 1, 4 & 3, 1 & 2, 2 \\
+	& $\StrategyB_{1}$ & $\StrategyB_{2}$ & $\StrategyB_{3}$ & $\StrategyB_{4}$\\ \hline \hline
+	$\StrategyA_1$ & 2, 2 & 1, 1 & 1, 3 & 2, 1\\ \hline
+	$\StrategyA_2$ & 2, 4 & 1, 3 & 1, 2 & 4, 2\\ \hline
+	$\StrategyA_3$ & 3, 2 & 2, 3 & 2, 5 & 3, 1 \\ \hline
+	$\StrategyA_4$ & 4, 1 & 1, 4 & 3, 1 & 2, 2 \\
 	\hline
 	\end{tabular}
 \end{center}
